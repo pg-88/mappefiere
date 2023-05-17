@@ -1,6 +1,6 @@
-from db import db
+from db import db,close_connection
 import json
-from fastapi import FastAPI
+from fastapi import FastAPI,Header
 import uvicorn
 
 app = FastAPI()
@@ -30,7 +30,7 @@ def json_all_stand():
             "n_stand":row[0],
             "name_stand":row[1],
             "category":row[2],
-            "descritpion":row[3],
+            "description":row[3],
             "n_pavilion":row[4],
             "website":row[5]}))
     
@@ -68,13 +68,16 @@ def json_all_fiere():
     for row in all_fiere:
         all_fiere_dict.add(row[0],({
             "name_conference":row[0],
-            "city":row[1],
-            "address":row[2],
-            "date":row[3],
-            "website":row[4],
-            "map":row[5],
-            "download_map":row[6],
-            "id_conference":row[7],}))
+            "regione":row[1],
+            "city":row[2],
+            "address":row[3],
+            "date":row[4],
+            "website":row[5],
+            "type":row[6],
+            "map":row[7],
+            "download_map":row[8],
+            "id_conference":row[9],
+        }))
     
     all_fiere_json = json.dumps(all_fiere_dict,indent=4)
 
@@ -82,10 +85,11 @@ def json_all_fiere():
 
 ## Query JSON with filter ##
 
-@app.get('/allstand{query_where}={query_id}')
+@app.get('/allstand/q={query_where}={query_id}')
 def json_filter_stand(query_where:str,query_id:str):
     '''Create JSON with row selected by filter '''
 
+    query_id.replace("%20"," ")
     query = "SELECT * FROM stand WHERE {}={}"
     cur = db.cursor()
     cur.execute(query.format(query_where,query_id))
@@ -104,10 +108,11 @@ def json_filter_stand(query_where:str,query_id:str):
 
     return my_dict
 
-@app.get('/allpavilion{query_where}={query_id}')
+@app.get('/allpavilion/q={query_where}={query_id}')
 def json_filter_pavilion(query_where:str,query_id:str):
     '''Create JSON with row selected by filter '''
 
+    query_id.replace("%20"," ")
     query = "SELECT * FROM pavilion WHERE {}={}"
     cur = db.cursor()
     cur.execute(query.format(query_where,query_id))
@@ -123,10 +128,11 @@ def json_filter_pavilion(query_where:str,query_id:str):
 
     return my_dict
 
-@app.get('/allfiere{query_where}={query_id}')
+@app.get('/allfiere/q={query_where}={query_id}')
 def json_filter_fiere(query_where:str,query_id:str):
     '''Create JSON with row selected by filter '''
-    
+
+    query_id.replace("%20"," ")
     query = "SELECT * FROM fiere WHERE {}={}"
     cur = db.cursor()
     cur.execute(query.format(query_where,query_id))
@@ -135,13 +141,14 @@ def json_filter_fiere(query_where:str,query_id:str):
     for row in result:
         my_dict.add(row[0],({
             "name_conference":row[0],
-            "city":row[1],
-            "address":row[2],
-            "date":row[3],
-            "website":row[4],
-            "map":row[5],
-            "download_map":row[6],
-            "id_conference":row[7],
+            "regione":row[1],
+            "city":row[2],
+            "address":row[3],
+            "date":row[4],
+            "website":row[5],
+            "type":row[6],
+            "map":row[7],
+            "download_map":row[8],
         }))
     
     results_json = json.dumps(my_dict)

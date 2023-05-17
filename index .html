@@ -1,35 +1,10 @@
-<?php include 'rest/setvar.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>Document</title>
-</head>
-<body>
-<?php
-    ////// FIERE //////
-    $name_conference = set_var_fiere()[0];
-    $regione = set_var_fiere()[1];
-    $city = set_var_fiere()[2];
-    $address = set_var_fiere()[3];
-    $date = set_var_fiere()[4];
-    $website = set_var_fiere()[5];
-
-    ////// PAD //////
-    $n_pavilion = set_var_pad()[0];
-    $name_conference_pad = set_var_pad()[1];
-
-    ////// STAND /////        
-    $name_stand = set_var_stand()[0];
-    $number_stand = set_var_stand()[1];
-    $category_stand = set_var_stand()[2];
-    $n_pav_stand = set_var_stand()[3];
-    $descr_stand = set_var_stand()[4];
-    $website_stand = set_var_stand()[5];
-    ?>
+<html>
+<title>Progetto Fiere</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="index.css">
+<body >
 
 <!-- Sidebar -->
 <div class="w3-sidebar w3-bar-block" style="display:none" id="mySidebar">
@@ -79,32 +54,48 @@
 
 <aside>
   <section>
+    <!-- <div class="row" id=row>
+      <article class="article1">  
+            <br>
+            <button class="copertina">copertina</button>
+            <br>
+            <br>
+            <div >
+              <h4>Nome fiera: Nerd show</h4>
+            </div>
+            <br>
+        
+      </article>
+    </div> -->
     <br>
     <div class="row" id=row>
       <article class="article2">
-        <h3 id="name_fiera"><?php echo $name_conference ?></h3>
         <h4>Informazioni generali:</h4>
         <div class="row">
           <div class="col">
             <p>Città:</p>
-            <p id="city"><?php echo $city ?></p>
+            <p id="city"></p>
             <p>Via:</p>
-            <p id="address"><?php echo $address ?></p>
+            <p id="address"> casuale giotto, 37 </p>
           </div>
           <div class="col">
-            <p>Periodo:</p>
-            <p id="date"><?php echo $date ?></p>
+            <p>Date:</p>
+            <p id="date"></p>
             <p>Sito:</p>
-            <p id="website"><?php echo $website ?></p>
+            <p id="website"></p>
           </div>
         </div>  
       </article>
     </div>
     <br>
+    <!-- <div class="row" id=row>
+      <article class="article3">
+        <h1>London</h1>
+        <div class="col">
+        </div>
+      </article>
+    </div> -->
   </section>
 </aside>     
 </body>
 </html> 
-
-</body>
-</html>
