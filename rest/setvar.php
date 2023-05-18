@@ -1,4 +1,6 @@
-<?php
+<?php 
+// require 'C:\xampp\htdocs\mappefiere\core\filter.php';
+// $result=filter();
 function set_var_stand(){
         $input = '145';
         $input = str_replace(" ","%20",$input);
@@ -16,7 +18,8 @@ function set_var_stand(){
 }
 
 function set_var_fiere(){
-        $input = 'Nerd Show';
+        $input = "Nerd Show";
+        // $GLOBALS['result']->fetch_assoc()['name_conference'];
         $input = str_replace(" ","%20",$input);
         $url = "http://127.0.0.1:8000/allfiere/q=name_conference='$input'";
         $json = file_get_contents($url);
