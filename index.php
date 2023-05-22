@@ -96,7 +96,7 @@
     <br>
     <div class="row" id=row>
       <article class="article2">
-        <p id="name_fiera" style='font-size: 22px; text-align: left;'><?php echo $name_conference ?></p>
+        <p id="name_fiera" style='padding:2px; font-size: 22px; text-align: left;'><?php echo $name_conference ?></p>
         <h4 style="text-align: left;"><strong>Informazioni generali:</strong></h4><br>
         <div class="row">
           <div class="col">
@@ -133,7 +133,7 @@
 </div>
 
 <div class="col-6" id="frame">
-  <iframe src="http://localhost:5173/" scrolling="no" frameborder="0" width="140%" height="500"></iframe>
+  <iframe src="http://localhost:5173/" scrolling="no" frameborder="0" width="140%" height="700"></iframe>
     </div>
 </body>
 

@@ -20,6 +20,8 @@ function showHome(){
     document.getElementById("side_info").style.display="block";
 
     document.getElementById("result").style.display="none";
+
+    document.getElementById("footer").style.display="block";
 }
 
 
