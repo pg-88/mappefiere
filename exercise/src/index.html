@@ -16,7 +16,7 @@
 
 <body class="homepage" onload="hiddenFrame()">
 
-    <div>
+    <div style="display: flex; align-items: center;">
         <button style="left: 100px;" class="hamburger" id="butHamb" onclick="hamburger()">
             <svg width="55" height="55" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_186_212)">
@@ -39,6 +39,27 @@
                         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_186_212" result="shape" />
                     </filter>
                 </defs>
+            </svg>
+        </button>
+        <button id="reset" class="btnReset">
+   
+            <svg width="55" height="55"  viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_186_219)">
+            <circle cx="21.5" cy="17.5" r="17.5" fill="#4541f1">
+            </g>
+            <path d="M25 25L18 17.5L25 10" stroke="#ffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+            <filter id="filter0_d_186_219" x="0" y="0" width="43" height="43" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_186_219"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_186_219" result="shape"/>
+            </filter>
+            </defs>
             </svg>
         </button>
     </div>
@@ -132,30 +153,10 @@
     </div>
     
 
-            <button id="reset" class="btnReset">
-   
-                <svg width="55" height="55"  viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g filter="url(#filter0_d_186_219)">
-                <circle cx="21.5" cy="17.5" r="17.5" fill="#4541f1">
-                </g>
-                <path d="M25 25L18 17.5L25 10" stroke="#ffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                <defs>
-                <filter id="filter0_d_186_219" x="0" y="0" width="43" height="43" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                <feOffset dy="4"/>
-                <feGaussianBlur stdDeviation="2"/>
-                <feComposite in2="hardAlpha" operator="out"/>
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_186_219"/>
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_186_219" result="shape"/>
-                </filter>
-                </defs>
-                </svg>
-                </button>
+
 
 <div id="model" class="float-container" >
-    <div id="canvas" class="float-child" style="width: 68%;">
+    <div id="canvas" class="float-child" style="width: 68%; height: 50%;">
         <canvas class="webgl"></canvas>
         <script type="module" src="./script.js"></script>    
     </div>
@@ -173,25 +174,27 @@
                             <div class="col">
                                 <p id="1">Città:</p>
                                 <p id="1_a"><strong>
-                                        BOLOGNA
+                                    Bologna
                                     </strong></p>
                                 <hr style="height:5px;color:#fff;">
                                 <p id="2">Via:</p>
                                 <p id="2_a"><strong>
-                                        VIA DELLA FIERA
+                                    Via della fiera 20A
                                     </strong></p>
                             </div>
                             <div class="col">
                                 <p id="3">Periodo:</p>
                                 <p id="3_a"><strong>
-                                        10/02-11/02
+                                    Marzo
                                     </strong></p>
                                 <hr style="height:5px;color:#fff;">
                                 <p id="4">Sito:</p>
                                 <p id="4_a"><strong>
-                                        SITO INTERNET
+                                    www.nerdshow.it
                                     </strong></p>
                             </div>
+                            <br>
+                            <p id="5"></p>
                             <p id="5_a"></p>
                         </div>
                     </article>

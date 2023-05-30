@@ -3,13 +3,13 @@ function hamburger(){
     // document.getElementById("model").classList.toggle("show");
     if (document.getElementById("mySidebar").style.display == "block"){
         document.getElementById("mySidebar").style.display="none";
-        // document.getElementById("side_info").style.display="block";
+        document.getElementById("reset").style.display="inline";
         document.getElementById("footer").style.display="block";
         document.getElementById("model").style.display="flex";
 
     }else{
         document.getElementById("mySidebar").style.display="block";
-        // document.getElementById("side_info").style.display="none";
+        document.getElementById("reset").style.display="none";
         document.getElementById("footer").style.display="none";
         document.getElementById("model").style.display="none";
         console.log(document.getElementById("model").style.display);
@@ -18,6 +18,7 @@ function hamburger(){
 }
 function hiddenFrame(){
     document.getElementById("model").style.display="none";
+    // document.getElementById("reset").style.display="none";
 }
 
 function showHome(){

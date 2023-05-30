@@ -274,6 +274,21 @@ canvas.addEventListener('mouseout', () => {
     scene.remove(wc)
   });
 
+  async function changeInfoPav(selectedObject){
+    let pav=selectedObject.name.slice(-2)
+    var url = 'http://127.0.0.1:8000/allpavilion/q=n_pavilion='+pav+'';
+    var data;
+    const res = await fetch(url)
+    data= await res.json()
+
+    var n_pavilion = data[pav]['n_pavilion'];
+    var name_conference = data[pav]['name_conference'];
+
+    document.getElementById("5").innerHTML = 'Padiglione';
+    document.getElementById("5_a").innerHTML = '<strong>'+n_pavilion+'</strong>';
+    
+ }
+
   async function changeInfoStand(selectedObject){
     var url = 'http://127.0.0.1:8000/allstand/q=n_stand='+selectedObject.name+'';
     var data;
@@ -289,21 +304,22 @@ canvas.addEventListener('mouseout', () => {
     var descr_stand = data[input]['description'];
     var website_stand = data[input]['website'];
  
-    // document.getElementById("name").innerHTML =name_stand;
-    // document.getElementById("1").innerHTML ='Numero Stand';
-    // document.getElementById("1_a").innerHTML =number_stand;
+    document.getElementById("name").innerHTML =name_stand;
+    document.getElementById("1").innerHTML ='Numero Stand';
+    document.getElementById("1_a").innerHTML =number_stand;
  
-    // document.getElementById("2").innerHTML ='Categoria';
-    // document.getElementById("2_a").innerHTML =category_stand;
+    document.getElementById("2").innerHTML ='Categoria';
+    document.getElementById("2_a").innerHTML =category_stand;
  
-    // document.getElementById("3").innerHTML ='Numero Padiglione';
-    // document.getElementById("3_a").innerHTML =n_pav_stand;
+    document.getElementById("3").innerHTML ='Numero Padiglione';
+    document.getElementById("3_a").innerHTML =n_pav_stand;
  
-    // document.getElementById("4").innerHTML ='Sito Web';
-    // document.getElementById("4_a").innerHTML = '<a href="'+website_stand+' " target="_blank">'+website_stand+'</a>';
+    document.getElementById("4").innerHTML ='Sito Web';
+    document.getElementById("4_a").innerHTML = '<a href="'+website_stand+' " target="_blank">'+website_stand+'</a>';
  
-    // document.getElementById("5_a").innerHTML =descr_stand;
-    console.log(name_stand)
+    document.getElementById("5").style.display ='none';
+    document.getElementById("5_a").innerHTML =descr_stand;
+    
  }
 
   canvas.addEventListener('click', () => {
@@ -322,7 +338,7 @@ canvas.addEventListener('mouseout', () => {
           scene.add(int28Int)
       }
         else if(selectedObject.name == 'Padiglione_29'){
-            console.log(selectedObject.name)
+            console.log(selectedObject.name.slice(-2))
             scene.remove(pad28)
             scene.remove(pad29)
             scene.remove(ingressoNord29)
@@ -336,6 +352,7 @@ canvas.addEventListener('mouseout', () => {
             scene.add(bar)
             scene.add(infoPoint)
             scene.add(wc)
+            changeInfoPav(selectedObject)
         } 
         else if(selectedObject.name == '143'){
           changeInfoStand(selectedObject)
