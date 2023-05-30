@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "start":[
+            "pip install fastapi",
+            "pip install uvicorn",
+            "pip install mysql-connector-python"
+        ]
+  }
+}
