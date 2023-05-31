@@ -2,13 +2,15 @@
 function hamburger(){
     // document.getElementById("model").classList.toggle("show");
     if (document.getElementById("mySidebar").style.display == "block"){
+        document.getElementById("body").style.backgroundColor = "#f5f5f5"
         document.getElementById("mySidebar").style.display="none";
         document.getElementById("reset").style.display="inline";
-        document.getElementById("footer").style.display="block";
+        document.getElementById("footer").style.display="flex";
         document.getElementById("model").style.display="flex";
-
+        
     }else{
         document.getElementById("mySidebar").style.display="block";
+        document.getElementById("body").style.backgroundColor = "#4541f1"
         document.getElementById("reset").style.display="none";
         document.getElementById("footer").style.display="none";
         document.getElementById("model").style.display="none";
@@ -81,6 +83,7 @@ async function resultForm(categoria,periodo,regione,citta){
 
 async function changeInfoConf(event){
     var input = event.target.innerText.replace(" ","%20")
+    hamburger()
     
     var url = 'http://127.0.0.1:8000/allfiere/q=name_conference='+input+'';
     var data;
@@ -99,19 +102,25 @@ async function changeInfoConf(event){
  
     document.getElementById("name").innerHTML =name_conference;
     document.getElementById("1").innerHTML ='Città';
-    document.getElementById("1_a").innerHTML =city;
+    document.getElementById("1_a").innerHTML ='<strong>'+city+'</strong>';
  
     document.getElementById("2").innerHTML ='Indirizzo';
-    document.getElementById("2_a").innerHTML =address;
+    document.getElementById("2_a").innerHTML ='<strong>'+address+'</strong>';
  
     document.getElementById("3").innerHTML ='Periodo';
-    document.getElementById("3_a").innerHTML =date;
+    document.getElementById("3_a").innerHTML ='<strong>'+date+'</strong>';
  
     document.getElementById("4").innerHTML ='Sito Web';
-    document.getElementById("4_a").innerHTML = '<a href="'+website+' " target="_blank">'+website+'</a>';
+    document.getElementById("4_a").innerHTML = '<a href="'+website+' " target="_blank">'+'<strong>'+website+'</strong>'+'</a>';
 
 }
 
+var counter = 0;
+function setCounter(){
+    counter = 0
+    let sideBarBtn = document.getElementById("resultBtn")
+    sideBarBtn.innerHTML = ''
+}
 
 async function formPost(){
     let categoria = document.getElementById("categoria").value;
@@ -119,6 +128,7 @@ async function formPost(){
     let regione = document.getElementById("regione").value;
     let citta = document.getElementById("citta").value;
     let btn =document.createElement('button') 
+    
     regione = regione.replace(" ","%20")
     periodo = periodo.replace(" ","%20")
     regione = regione.replace(" ","%20")
@@ -126,16 +136,18 @@ async function formPost(){
 
     var result = await resultForm(categoria,periodo,regione,citta)
     .then((data)=>{return data})
+    if (counter == 0) {
 
-    for (let i = 0; i < result.length; i++) {
-        btn.innerText = result[i]
-        btn.addEventListener("click", (e)=>{
-            changeInfoConf(e)
-        })
-        let mySidebar = document.getElementById("mySidebar")
-        mySidebar.appendChild(btn)
-
+        for (let i = 0; i < result.length; i++) {
+            btn.innerText = result[i]
+            btn.addEventListener("click", (e)=>{
+                changeInfoConf(e)
+            })
+            let mySidebar = document.getElementById("resultBtn")
+            mySidebar.appendChild(btn)
+        }
     }
 
+    counter++
 }
 
