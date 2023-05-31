@@ -69,25 +69,8 @@
     <div style="display: block;" id="mySidebar">
         <div class="raw">
             <br>
-            <div class="col">
-            </div>
-            <br>
-            <script>
-                function activeSearchBtn() {
-                    let categoria = document.getElementById("categoria").value;
-                    let periodo = document.getElementById("periodo").value;
-                    let regione = document.getElementById("regione").value;
-                    let citta = document.getElementById("citta").value;
+            <form  method="post" id="form">
 
-                    if (categoria && periodo && regione && citta != '') {
-                        document.getElementById("search").disabled = false;
-                    }
-                }
-            </script>
-
-            <form action="" method="post" id="form" target="_self" onsubmit="hamburger()">
-                <!-- <input onchange="activeSearchBtn()" type="text" name="categoria" id="categoria" list="list_cat"
-                    placeholder="CATEGORIA"><br> -->
                 <div class="row">
                     <select id="categoria" name="list_cat">
                         <option placeholder="" value="" class="titolo">CATEGORIA</option>
@@ -98,8 +81,6 @@
                 </div>
                 <br>
 
-                <!-- <input onchange="activeSearchBtn()" type="text" name="periodo" id="periodo" list="list_per"
-                    placeholder="PERIODO"><br> -->
                 <div class="row">
                     <select id="periodo" >
                         <option placeholder="" value="" class="titolo">PERIODO</option>
@@ -110,8 +91,7 @@
                 </div>
                 <br>
 
-                <!-- <input onchange="activeSearchBtn()" type="text" name="regione" id="regione" list="list_reg"
-                    placeholder="REGIONE"><br> -->
+
                 <div class="row">
                     <select id="regione">
                         <option placeholder="" value="" class="titolo">REGIONE</option>
@@ -122,8 +102,6 @@
                 </div>
                 <br>
 
-                <!-- <input onchange="activeSearchBtn()" type="text" name="citta" id="citta" list="list_cit"
-                    placeholder="CITTA'"><br><br> -->
                 <div class="row">
                     <select id="citta">
                         <option placeholder="" value="" class="titolo">CITTÀ</option>
@@ -140,7 +118,7 @@
                         d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z">
                     </path>
                 </svg>
-                <input type="submit" name="search" id="search" value="Cerca" disabled>
+                <input type="button" name="search" id="search" value="Cerca" onclick="formPost()">
             </form>
         </div>
     </div>

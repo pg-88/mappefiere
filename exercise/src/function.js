@@ -50,6 +50,92 @@ function toggleSidebar() {
     sidebar.classList.toggle('open');
 }
 
+function activeSearchBtn() {
+    let categoria = document.getElementById("categoria").value;
+    let periodo = document.getElementById("periodo").value;
+    let regione = document.getElementById("regione").value;
+    let citta = document.getElementById("citta").value;
+
+    if (categoria && periodo && regione && citta != '') {
+        document.getElementById("search").disabled = false;
+    }
+}
+
+async function resultForm(categoria,periodo,regione,citta){
+
+    var url = 'http://127.0.0.1:8000/allfiere/q=type='+categoria+'/'+periodo+'/'+regione+'/'+citta+'';
+    var data;
+    const res = await fetch(url)
+    data= await res.json()
+
+    var result = []
+    if(Object.keys(data).length === 0){
+        result = 'No results'
+    }else{
+        for (let i = 0; i < Object.keys(data).length; i++) {
+            result.push(data[i]['name_conference']);
+        } 
+    }
+    return result
+}
+
+async function changeInfoConf(event){
+    var input = event.target.innerText.replace(" ","%20")
+    
+    var url = 'http://127.0.0.1:8000/allfiere/q=name_conference='+input+'';
+    var data;
+    const res = await fetch(url)
+    data= await res.json()
 
 
+    input = input.replace("%20"," ")
+
+    var name_conference = data[input]['name_conference'];
+    var regione = data[input]['regione'];
+    var city = data[input]['city'];
+    var address = data[input]['address']; 
+    var date = data[input]['date'];
+    var website = data[input]['website'];
+ 
+    document.getElementById("name").innerHTML =name_conference;
+    document.getElementById("1").innerHTML ='Città';
+    document.getElementById("1_a").innerHTML =city;
+ 
+    document.getElementById("2").innerHTML ='Indirizzo';
+    document.getElementById("2_a").innerHTML =address;
+ 
+    document.getElementById("3").innerHTML ='Periodo';
+    document.getElementById("3_a").innerHTML =date;
+ 
+    document.getElementById("4").innerHTML ='Sito Web';
+    document.getElementById("4_a").innerHTML = '<a href="'+website+' " target="_blank">'+website+'</a>';
+
+}
+
+
+async function formPost(){
+    let categoria = document.getElementById("categoria").value;
+    let periodo = document.getElementById("periodo").value;
+    let regione = document.getElementById("regione").value;
+    let citta = document.getElementById("citta").value;
+    let btn =document.createElement('button') 
+    regione = regione.replace(" ","%20")
+    periodo = periodo.replace(" ","%20")
+    regione = regione.replace(" ","%20")
+    citta = citta.replace(" ","%20")
+
+    var result = await resultForm(categoria,periodo,regione,citta)
+    .then((data)=>{return data})
+
+    for (let i = 0; i < result.length; i++) {
+        btn.innerText = result[i]
+        btn.addEventListener("click", (e)=>{
+            changeInfoConf(e)
+        })
+        let mySidebar = document.getElementById("mySidebar")
+        mySidebar.appendChild(btn)
+
+    }
+
+}
 

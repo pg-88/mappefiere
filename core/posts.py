@@ -144,7 +144,7 @@ def json_filter_fiere(query_where:str,query_id:str):
     '''Create JSON with row selected by filter '''
 
     query_id.replace("%20"," ")
-    query = "SELECT * FROM fiere WHERE {}={}"
+    query = "SELECT * FROM `fiere` WHERE `{}`='{}'"
     cur = db.cursor()
     cur.execute(query.format(query_where,query_id))
     result = cur.fetchall()
@@ -161,6 +161,39 @@ def json_filter_fiere(query_where:str,query_id:str):
             "map":row[7],
             "download_map":row[8],
         }))
+    
+    results_json = json.dumps(my_dict)
+
+    return my_dict
+
+@app.get('/allfiere/q=type={query_id}/{query_date}/{query_reg}/{query_city}')
+def json_filter(query_id:str,query_date:str,query_reg:str,query_city:str):
+    '''Create JSON with row selected by filter '''
+
+    query_id.replace("%20"," ")
+    query_reg.replace("%20"," ")
+    query_city.replace("%20"," ")
+    query = "SELECT * FROM `fiere` WHERE `type` = '{}' AND `date` = '{}' AND `regione` = '{}' AND `city` = '{}';"
+    cur = db.cursor()
+    cur.execute(query.format(query_id,query_date,query_reg,query_city))
+    result = cur.fetchall()
+    my_dict = create_dict()
+    i=0
+    for row in result:
+        
+        my_dict.add(i,({
+            "name_conference":row[0],
+            "regione":row[1],
+            "city":row[2],
+            "address":row[3],
+            "date":row[4],
+            "website":row[5],
+            "type":row[6],
+            "map":row[7],
+            "download_map":row[8],
+        })) 
+    
+        i=i+1
     
     results_json = json.dumps(my_dict)
 
